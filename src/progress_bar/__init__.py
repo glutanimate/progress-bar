@@ -3,6 +3,7 @@
 # Progress Bar Add-on for Anki
 #
 # Copyright (C) 2017-2021  Aristotelis P. <https://glutanimate.com/>
+#                          and contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -64,7 +65,7 @@ def initialize_addon():
 
     # maybeStartDebugging()
 
-    from . import reviewer_progress_bar
+    from . import progress # noqa
 
 
 initialize_addon()
