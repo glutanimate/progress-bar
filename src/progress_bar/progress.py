@@ -31,16 +31,12 @@
 # Any modifications to this file must keep this entire header intact.
 
 # Do not modify the following lines
-from __future__ import unicode_literals
 from typing import Optional
 
-from anki.hooks import addHook, wrap
 from anki import version as anki_version
-
-from aqt.utils import showInfo
-
-from aqt.qt import *
+from anki.hooks import addHook
 from aqt import mw
+from aqt.qt import *
 
 ############## USER CONFIGURATION START ##############
 
@@ -289,7 +285,7 @@ def updatePB() -> None:
                 pbMax += totalCount[node.deck_id]
                 pbValue += doneCount[node.deck_id]
 
-    # showInfo("pbMax = %d, pbValue = %d" % (pbMax, pbValue))
+    # print("pbMax = %d, pbValue = %d" % (pbMax, pbValue))
 
     if pbMax == 0:  # 100%
         progressBar.setRange(0, 1)
@@ -420,16 +416,16 @@ def afterStateChangeCallBack(state: str, oldState: str) -> None:
             updateCountsForAllDecks(True)
         currDID = None
     else:  # "overview" or "review"
-        # showInfo("mw.col.decks.current()['id'])= %d" % mw.col.decks.current()['id'])
+        # print("mw.col.decks.current()['id'])= %d" % mw.col.decks.current()['id'])
         currDID = mw.col.decks.current()["id"]
 
-    # showInfo("updateCountsForAllDecks(True), currDID = %d" % (currDID if currDID else 0))
+    # print("updateCountsForAllDecks(True), currDID = %d" % (currDID if currDID else 0))
     updateCountsForAllDecks(True)  # see comments at updateCountsForAllDecks()
     updatePB()
 
 
 def showQuestionCallBack() -> None:
-    # showInfo("updateCountsForAllDecks(False), currDID = %d" % (currDID if currDID else 0))
+    # print("updateCountsForAllDecks(False), currDID = %d" % (currDID if currDID else 0))
     updateCountsForAllDecks(False)  # see comments at updateCountsForAllDecks()
     updatePB()
 
