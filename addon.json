@@ -1,0 +1,15 @@
+{
+    "display_name": "Progress Bar",
+    "module_name": "progress_bar",
+    "repo_name": "progress-bar",
+    "ankiweb_id": "2091361802",
+    "author": "Glutanimate",
+    "contact": "https://glutanimate.com",
+    "homepage": "https://github.com/glutanimate/progress-bar",
+    "copyright_start": 2017,
+    "tags": "",
+    "conflicts": [],
+    "targets": [
+        "anki21"
+    ]
+}
