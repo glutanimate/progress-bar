@@ -14,9 +14,49 @@ If you enjoy Progress Bar, please consider supporting my work on Patreon, or by 
 
 ### Added
 
-- Initial release of Progress Bar
+- Support for Anki 2.1.28+ (thanks to liuzikai)
+- Display overall progress in deck browser (thanks to liuzikai)
+- Progress is now remembered when switching back/forth between decks (thanks to liuzikai)
 
-[Unreleased]: https://github.com/glutanimate/progress-bar/compare/v0.0.0...HEAD
+### Changed
+
+- Largely refactor progress calculation (thanks to liuzikai)
+- Use a robuster method to get due counts (thanks to liuzikai)
+- Smoothen progress by introducing customizable weights for new cards, reviews, and cards in learning (thanks to liuzikai)
+- Introduce type hints to many parts of the codebase (thanks to liuzikai)
+- Rework project structure and move the add-on to a new repo in order to make it easier to publish updates, and reduce the barrier of entry for new contributors
+
+## [1.3.0] - 2017-08-23
+
+### Added
+
+- Anki 2.1 compatibility
+- New setting that shows remaining count (thanks to Sebastien Guillemot)
+
+### Changed
+
+- Limit to daily review limits by default (thanks to Sebastien Guillemot)
+
+### Fixed
+
+- Many bug fixes and smaller improvements (thanks to Sebastien Guillemot)
+
+## 1.2.0 - 2017-08-06
+
+Rework configuration section, add options for width and new/review queue
+
+## 1.1.0 - 2017-08-06
+
+Re-upload by me after the original add-on was deleted / the author went missing.
+
+## 1.0.0 - 2017
+
+Original release of Progress Bar by nest0r/Ja-Dark.
+
+
+[Unreleased]: https://github.com/glutanimate/progress-bar/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/glutanimate/progress-bar/releases/tag/v1.3.0
+
 
 -----
 
