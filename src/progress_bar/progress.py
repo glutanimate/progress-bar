@@ -99,33 +99,45 @@ qbr = 0  # Border radius (> 0 for rounded corners).
 # optionally restricts progress bar width
 maxWidth = "5px"  # (e.g. "5px". default: "")
 
-scrollingBarWhenEditing = True  # Make the progress bar 'scrolling' when waiting to resume.
+scrollingBarWhenEditing = (
+    True  # Make the progress bar 'scrolling' when waiting to resume.
+)
 
-orientationHV = Qt.Horizontal  # Show bar horizontally (side to side). Use with top/bottom dockArea.
+orientationHV = (
+    Qt.Horizontal
+)  # Show bar horizontally (side to side). Use with top/bottom dockArea.
 # orientationHV = Qt.Vertical # Show bar vertically (up and down). Use with right/left dockArea.
 
-invertTF = False  # If set to True, inverts and goes from right to left or top to bottom.
+invertTF = (
+    False  # If set to True, inverts and goes from right to left or top to bottom.
+)
 
-dockArea = Qt.TopDockWidgetArea  # Shows bar at the top. Use with horizontal orientation.
+dockArea = (
+    Qt.TopDockWidgetArea
+)  # Shows bar at the top. Use with horizontal orientation.
 # dockArea = Qt.BottomDockWidgetArea # Shows bar at the bottom. Use with horizontal orientation.
 # dockArea = Qt.RightDockWidgetArea # Shows bar at right. Use with vertical orientation.
 # dockArea = Qt.LeftDockWidgetArea # Shows bar at left. Use with vertical orientation.
 
 pbStyle = ""  # Stylesheet used only if blank. Else uses QPalette + theme style.
-'''pbStyle options (insert a quoted word above):
+"""pbStyle options (insert a quoted word above):
     -- "plastique", "windowsxp", "windows", "windowsvista", "motif", "cde", "cleanlooks"
     -- "macintosh", "gtk", or "fusion" might also work
     -- "windowsvista" unfortunately ignores custom colors, due to animation?
     -- Some styles don't reset bar appearance fully on undo. An annoyance.
-    -- Themes gallery: http://doc.qt.io/qt-4.8/gallery.html'''
+    -- Themes gallery: http://doc.qt.io/qt-4.8/gallery.html"""
 
 ##############  USER CONFIGURATION END  ##############
 
 # Set up variables
 
 remainCount = {}  # {did: remaining count (weighted) of the deck}
-doneCount = {}  # {did: done count (weighted) of the deck}, calculated as total - remain when showing next question
-totalCount = {}  # {did: max total count (weighted) that was seen}, calculated as remain + done after state change
+doneCount = (
+    {}
+)  # {did: done count (weighted) of the deck}, calculated as total - remain when showing next question
+totalCount = (
+    {}
+)  # {did: max total count (weighted) that was seen}, calculated as remain + done after state change
 # NOTE: did stands for 'deck id'
 # For old API of deckDueList(), these counts don't include cards in children decks. For new deck_due_tree(), they do.
 
@@ -158,19 +170,22 @@ try:
     # Remove that annoying separator strip if we have Night Mode, avoiding conflicts with this add-on.
     import Night_Mode
 
-    Night_Mode.nm_css_menu \
-        += Night_Mode.nm_css_menu \
-           + '''
+    Night_Mode.nm_css_menu += (
+        Night_Mode.nm_css_menu
+        + """
         QMainWindow::separator
     {
         width: 0px;
         height: 0px;
     }
-    '''
+    """
+    )
 except ImportError:
     nmUnavailable = 1
 
-useOldAnkiAPI = (anki_version.startswith("2.1.") and int(anki_version.split(".")[-1]) < 28)
+useOldAnkiAPI = (
+    anki_version.startswith("2.1.") and int(anki_version.split(".")[-1]) < 28
+)
 
 
 def initPB() -> None:
@@ -182,7 +197,7 @@ def initPB() -> None:
     progressBar.setOrientation(orientationHV)
     if pbdStyle is None:
         progressBar.setStyleSheet(
-            '''
+            """
                 QProgressBar
                 {
                     text-align:center;
@@ -197,7 +212,9 @@ def initPB() -> None:
                     margin: 0px;
                     border-radius: %dpx;
                 }
-                ''' % (qtxt, qbg, qbr, restrictSize, qfg, qbr))
+                """
+            % (qtxt, qbg, qbr, restrictSize, qfg, qbr)
+        )
     else:
         progressBar.setStyle(pbdStyle)
         progressBar.setPalette(palette)
@@ -206,7 +223,7 @@ def initPB() -> None:
 
 def _dock(pb: QProgressBar) -> QDockWidget:
     """Dock for the progress bar. Giving it a blank title bar,
-        making sure to set focus back to the reviewer."""
+    making sure to set focus back to the reviewer."""
     dock = QDockWidget()
     tWidget = QWidget()
     dock.setObjectName("pbDock")
@@ -216,7 +233,11 @@ def _dock(pb: QProgressBar) -> QDockWidget:
     # Note: if there is another widget already in this dock position, we have to add ourself to the list
 
     # first check existing widgets
-    existing_widgets = [widget for widget in mw.findChildren(QDockWidget) if mw.dockWidgetArea(widget) == dockArea]
+    existing_widgets = [
+        widget
+        for widget in mw.findChildren(QDockWidget)
+        if mw.dockWidgetArea(widget) == dockArea
+    ]
 
     # then add ourselves
     mw.addDockWidget(dockArea, dock)
@@ -296,19 +317,20 @@ def setScrollingPB() -> None:
 
 def nmApplyStyle() -> None:
     """Checks whether Night_Mode is disabled:
-        if so, we remove the separator here."""
+    if so, we remove the separator here."""
     global nmStyleApplied
     if not nmUnavailable:
         nmStyleApplied = Night_Mode.nm_state_on
     if not nmStyleApplied:
         mw.setStyleSheet(
-            '''
+            """
         QMainWindow::separator
     {
         width: 0px;
         height: 0px;
     }
-    ''')
+    """
+        )
 
 
 def calcProgress(rev: int, lrn: int, new: int) -> int:
@@ -399,7 +421,7 @@ def afterStateChangeCallBack(state: str, oldState: str) -> None:
         currDID = None
     else:  # "overview" or "review"
         # showInfo("mw.col.decks.current()['id'])= %d" % mw.col.decks.current()['id'])
-        currDID = mw.col.decks.current()['id']
+        currDID = mw.col.decks.current()["id"]
 
     # showInfo("updateCountsForAllDecks(True), currDID = %d" % (currDID if currDID else 0))
     updateCountsForAllDecks(True)  # see comments at updateCountsForAllDecks()
@@ -414,4 +436,3 @@ def showQuestionCallBack() -> None:
 
 addHook("afterStateChange", afterStateChangeCallBack)
 addHook("showQuestion", showQuestionCallBack)
-
