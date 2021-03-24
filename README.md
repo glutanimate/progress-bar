@@ -1,4 +1,4 @@
-<p align="center"><img src="screenshots/logo.png"></p>
+<p align="center"><img src="screenshots/progress_bar_top.png"></p>
 
 <h2 align="center">Progress Bar for Anki</h2>
 
@@ -12,9 +12,9 @@
 <a title="Follow me on Twitter" href="https://twitter.com/intent/user?screen_name=glutanimate"><img src="https://img.shields.io/twitter/follow/glutanimate.svg"></a>
 </p>
 
-> Intro quip
+> Your Anki session progress at a glance
 
-This is an add-on for the spaced-repetition flashcard app [Anki](https://apps.ankiweb.net/).
+This is an add-on for the spaced-repetition flashcard app [Anki](https://apps.ankiweb.net/) that adds a progress bar to the review screen.
 
 ### Table of Contents <!-- omit in toc -->
 
@@ -98,7 +98,18 @@ Contributions are welcome! Please review the [contribution guidelines](./CONTRIB
 
 ### License and Credits
 
-*Progress Bar* is *Copyright © 2017-2021 [Aristotelis P.](https://glutanimate.com/) (Glutanimate)*
+*Progress Bar* is
+
+*Copyright © 2017-2021 [Aristotelis P.](https://glutanimate.com/) (Glutanimate)*
+*Copyright © 2018-2020 [liuzikai](https://github.com/liuzikai)*
+*Copyright © 2017 [SebastienGllmt](https://github.com/SebastienGllmt)*
+*Copyright © 2017 nest0r/Ja-Dark*
+
+This is a fork of an add-on which was removed from AnkiWeb in early 2017. The original was most likely written by nest0r/Ja-Dark. All credit for the original add-on goes to them.
+
+My heartfelt thanks also goes out to Sebastien and liuzikai for their major contributions in fixing longstanding issues and bringing the add-on up-to-speed with recent Anki releases.
+
+For a list of all significant contributors to this project and their contributions please see [CONTRIBUTORS](./CONTRIBUTORS).
 
 Progress Bar is free and open-source software. The add-on code that runs within Anki is released under the GNU AGPLv3 license, extended by a number of additional terms. For more information please see the [LICENSE](https://github.com/glutanimate/progress-bar/blob/master/LICENSE) file that accompanied this program.
 
