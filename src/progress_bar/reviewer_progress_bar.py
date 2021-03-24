@@ -153,8 +153,7 @@ try:
 except ImportError:
     nmUnavailable = 1
 
-useOldAnkiAPI = anki_version.startswith("2.0.") or (
-            anki_version.startswith("2.1.") and int(anki_version.split(".")[-1]) < 28)
+useOldAnkiAPI = (anki_version.startswith("2.1.") and int(anki_version.split(".")[-1]) < 28)
 
 
 def initPB() -> None:
@@ -399,30 +398,3 @@ def showQuestionCallBack() -> None:
 addHook("afterStateChange", afterStateChangeCallBack)
 addHook("showQuestion", showQuestionCallBack)
 
-if anki_version.startswith("2.0.x"):
-    """Workaround for QSS issue in EditCurrent,
-    only necessary on Anki 2.0.x"""
-
-    from aqt.editcurrent import EditCurrent
-
-
-    def changeStylesheet(*args):
-        mw.setStyleSheet('''
-            QMainWindow::separator
-        {
-            width: 0px;
-            height: 0px;
-        }
-        ''')
-
-
-    def restoreStylesheet(*args):
-        mw.setStyleSheet("")
-
-
-    EditCurrent.__init__ = wrap(
-        EditCurrent.__init__, restoreStylesheet, "after")
-    EditCurrent.onReset = wrap(
-        EditCurrent.onReset, changeStylesheet, "after")
-    EditCurrent.onSave = wrap(
-        EditCurrent.onSave, changeStylesheet, "after")
