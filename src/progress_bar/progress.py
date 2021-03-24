@@ -42,8 +42,6 @@ from aqt.utils import showInfo
 from aqt.qt import *
 from aqt import mw
 
-__version__ = '2.0.1'
-
 ############## USER CONFIGURATION START ##############
 
 # CARD TALLY CALCULATION
